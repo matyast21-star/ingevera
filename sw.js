@@ -1,5 +1,5 @@
-const CACHE = 'ingevera-v3';
-const SHELL = ['./', 'index.html', 'assets/styles.css?v=3', 'assets/fonts.css?v=3', 'assets/app.js?v=3', 'assets/fonts/Montserrat.woff2', 'assets/fonts/PublicSans.woff2', 'assets/img/logo-dark.png?v=3', 'favicon.png'];
+const CACHE = 'ingevera-v5';
+const SHELL = ['./', 'index.html', 'assets/styles.css?v=5', 'assets/fonts.css?v=5', 'assets/app.js?v=5', 'assets/fonts/Montserrat.woff2', 'assets/fonts/PublicSans.woff2', 'assets/img/logo-core.png?v=5', 'favicon.png?v=5'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

@@ -13,15 +13,16 @@
 <meta property="og:locale" content="es_CL">
 <meta property="og:title" content="INGEVERA · Ingeniería y Soluciones Eléctricas">
 <meta property="og:description" content="Desde la ampolleta hasta el empalme al poste. Electricidad para casas en Casablanca y arriendo de zanjadora.">
-<meta property="og:image" content="assets/img/icon-512.png">
+<meta property="og:image" content="assets/img/icon-512.png?v=5">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=5">
+<link rel="icon" type="image/png" href="favicon.png?v=5" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=5">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="preload" href="assets/fonts/Montserrat.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/fonts.css?v=3">
-<link rel="stylesheet" href="assets/styles.css?v=3">
+<link rel="stylesheet" href="assets/fonts.css?v=5">
+<link rel="stylesheet" href="assets/styles.css?v=5">
 <style>
 .splash{position:fixed;inset:0;z-index:200;display:none;overflow:hidden;color:#F5F1EA;background:radial-gradient(120% 70% at 50% 42%,#0E2A6B 0%,#081A48 45%,#050D26 100%);transition:opacity .6s cubic-bezier(.16,1,.3,1),visibility 0s .6s;-webkit-user-select:none;user-select:none}
 .splash-on .splash{display:block}
@@ -29,16 +30,17 @@
 .splash__corner{position:absolute;width:min(70vw,420px);height:auto;fill:none;stroke:#2B4A8F;stroke-width:1.5;opacity:.55}
 .splash__corner--tr{top:0;right:0}
 .splash__corner--bl{bottom:0;left:0;transform:rotate(180deg)}
-.splash__center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:0 16px 70px}
-.splash__mark{width:min(48vw,230px);height:auto;overflow:visible}
-.splash__mark path{fill:none;stroke:#FC632A;stroke-width:20;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:sp-draw 1.1s cubic-bezier(.65,0,.35,1) forwards;animation-delay:calc(.15s + var(--i)*.13s)}
-.splash__socket,.splash__plug{fill:#FC632A;opacity:0}
-.splash__socket circle{fill:#081A48}
-.splash__socket{transform:translateY(-12px);animation:sp-in .5s cubic-bezier(.16,1,.3,1) 1.45s forwards}
-.splash__plug{transform:translateY(26px);animation:sp-in .45s cubic-bezier(.3,1.4,.5,1) 1.75s forwards}
-.splash__mark.is-live{animation:sp-flash .5s ease-out 2.15s}
-.splash__word{margin-top:6px;font:800 clamp(2rem,9vw,3rem)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.01em;opacity:0;transform:translateY(10px);animation:sp-in .7s cubic-bezier(.16,1,.3,1) 2.05s forwards}
-.splash__tag{max-width:16em;text-align:center;font:600 clamp(1rem,4.4vw,1.25rem)/1.3 'Montserrat',system-ui,sans-serif;color:#B9C4D6;opacity:0;transform:translateY(8px);animation:sp-in .7s cubic-bezier(.16,1,.3,1) 2.3s forwards}
+.splash__center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:0 12px 70px}
+.splash__logo{width:min(94vw,640px);height:auto;overflow:visible}
+.splash__logo image,.splash__logo g,.splash__logo circle{transform-box:fill-box;transform-origin:center}
+.sp-c{opacity:0;animation:sp-in .9s cubic-bezier(.16,1,.3,1) .1s forwards}
+.sp-c--tr{transform:translate(18%,-30%)}
+.sp-c--bl{transform:translate(-18%,30%)}
+.sp-wire{fill:none;stroke:#fff;stroke-width:100;stroke-linecap:butt;stroke-dasharray:1 1;stroke-dashoffset:1;animation:sp-draw 1.1s cubic-bezier(.65,0,.35,1) .5s forwards}
+.sp-l{opacity:0;transform:translateY(14%);animation:sp-in .55s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(1.75s + var(--i)*.07s)}
+.sp-slogan{opacity:0;transform:translateY(20%);animation:sp-in .7s cubic-bezier(.16,1,.3,1) 2.35s forwards}
+.sp-spark{fill:#FC632A;opacity:0;transform:scale(.2);animation:sp-spark .55s ease-out 1.6s}
+.splash__logo.is-live{animation:sp-flash .6s ease-out 1.62s}
 .splash__load{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:sp-in .5s ease-out 2.5s forwards}
 .splash__bar{width:min(56vw,220px);height:7px;border-radius:99px;background:#1A2D5C;overflow:hidden}
 .splash__bar i{display:block;height:100%;width:100%;border-radius:inherit;background:#FC632A;transform:scaleX(0);transform-origin:left;animation:sp-fill 2.2s cubic-bezier(.45,0,.2,1) 2.6s forwards}
@@ -60,32 +62,38 @@
 @keyframes sp-draw{to{stroke-dashoffset:0}}
 @keyframes sp-in{to{opacity:1;transform:none}}
 @keyframes sp-fill{to{transform:scaleX(1)}}
-@keyframes sp-flash{0%{filter:brightness(1)}30%{filter:brightness(1.6) drop-shadow(0 0 0 #FC632A)}100%{filter:brightness(1)}}
+@keyframes sp-flash{0%{filter:none}30%{filter:brightness(1.35) drop-shadow(0 0 14px rgba(91,192,222,.55))}100%{filter:none}}
+@keyframes sp-spark{0%{opacity:0;transform:scale(.2)}25%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.8)}}
 .has-splash body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.splash{display:none!important}}
-@media (max-height:620px){.splash__center{padding-bottom:90px;gap:10px}.splash__mark{width:min(34vw,160px)}.splash__load{margin-top:16px}.splash__credit{bottom:18px;gap:8px}}
+@media (max-height:620px){.splash__center{padding-bottom:90px;gap:10px}.splash__logo{width:min(70vw,440px)}.splash__load{margin-top:16px}.splash__credit{bottom:18px;gap:8px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <div class="splash" id="splash" role="presentation">
-  <svg class="splash__corner splash__corner--tr" viewBox="0 0 400 400" aria-hidden="true"><circle cx="400" cy="0" r="140"/><circle cx="400" cy="0" r="200"/><circle cx="400" cy="0" r="260"/><circle cx="400" cy="0" r="320"/></svg>
-  <svg class="splash__corner splash__corner--bl" viewBox="0 0 400 400" aria-hidden="true"><circle cx="400" cy="0" r="140"/><circle cx="400" cy="0" r="200"/><circle cx="400" cy="0" r="260"/><circle cx="400" cy="0" r="320"/></svg>
+  <svg class="splash__corner splash__corner--tr" viewBox="0 0 400 400" aria-hidden="true"><path d="M130 30H290L400 140"/><path d="M100 60H260L400 200"/><path d="M70 90H230L400 260"/><path d="M40 120H200L400 320"/></svg>
+  <svg class="splash__corner splash__corner--bl" viewBox="0 0 400 400" aria-hidden="true"><path d="M130 30H290L400 140"/><path d="M100 60H260L400 200"/><path d="M70 90H230L400 260"/><path d="M40 120H200L400 320"/></svg>
   <button class="splash__btn splash__sound" id="sp-sound" type="button" aria-pressed="true" aria-label="Sonido de la presentación"><svg class="on" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><svg class="off" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
   <button class="splash__btn splash__skip" id="sp-skip" type="button">Saltar</button>
   <p class="splash__hint" id="sp-hint" hidden>Toca la pantalla para activar el sonido</p>
   <div class="splash__center" aria-hidden="true">
-    <svg class="splash__mark" id="sp-mark" viewBox="0 0 460 400" aria-hidden="true">
-    <path style="--i:0" d="M152 212V200a78 78 0 0 1 156 0v34"/>
-    <path style="--i:1" d="M123 212V200a107 107 0 0 1 214 0v62"/>
-    <path style="--i:2" d="M94 212V200a136 136 0 0 1 272 0v86"/>
-    <path style="--i:3" d="M65 212V200a165 165 0 0 1 330 0v110"/>
-    <path style="--i:4" d="M36 212V200a194 194 0 0 1 388 0v138"/>
-    <g class="splash__socket"><rect x="293" y="240" width="30" height="50" rx="15"/><circle cx="308" cy="255" r="5"/><circle cx="308" cy="274" r="5"/></g>
-    <g class="splash__plug"><rect x="404" y="342" width="40" height="32" rx="6"/><rect x="412" y="372" width="7" height="22" rx="2"/><rect x="429" y="372" width="7" height="22" rx="2"/></g>
-  </svg>
-    <span class="splash__word">INGEVERA</span>
-    <span class="splash__tag">Ingeniería y Soluciones Eléctricas</span>
+    <svg class="splash__logo" id="sp-mark" viewBox="130 70 1500 760" aria-hidden="true">
+      <defs>
+        <mask id="sp-wire" maskUnits="userSpaceOnUse" x="130" y="70" width="1500" height="760">
+          <path class="sp-wire" pathLength="1" d="M318 413C230 428 175 450 177 480C179 510 240 532 330 545L424 545"/>
+          <path class="sp-wire" pathLength="1" d="M1472 413C1560 428 1612 450 1610 480C1608 510 1550 532 1470 545L1380 545"/>
+        </mask>
+        <clipPath id="sp-l0" clipPathUnits="userSpaceOnUse"><rect x="322" y="325" width="30" height="160"/></clipPath><clipPath id="sp-l1" clipPathUnits="userSpaceOnUse"><rect x="370" y="325" width="151" height="160"/></clipPath><clipPath id="sp-l2" clipPathUnits="userSpaceOnUse"><rect x="536" y="325" width="152" height="160"/></clipPath><clipPath id="sp-l3" clipPathUnits="userSpaceOnUse"><rect x="706" y="325" width="133" height="160"/></clipPath><clipPath id="sp-l4" clipPathUnits="userSpaceOnUse"><rect x="845" y="325" width="165" height="160"/></clipPath><clipPath id="sp-l5" clipPathUnits="userSpaceOnUse"><rect x="1016" y="325" width="133" height="160"/></clipPath><clipPath id="sp-l6" clipPathUnits="userSpaceOnUse"><rect x="1164" y="325" width="147" height="160"/></clipPath><clipPath id="sp-l7" clipPathUnits="userSpaceOnUse"><rect x="1326" y="325" width="143" height="160"/></clipPath>
+      </defs>
+      <image class="sp-c sp-c--tr" href="assets/img/sp-corner-tr.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none"/>
+      <image class="sp-c sp-c--bl" href="assets/img/sp-corner-bl.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none"/>
+      <image href="assets/img/sp-cable.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" mask="url(#sp-wire)"/>
+      <circle class="sp-spark" cx="428" cy="545" r="34"/>
+      <circle class="sp-spark" cx="1376" cy="545" r="34"/>
+      <g class="sp-l" style="--i:0"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l0)"/></g><g class="sp-l" style="--i:1"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l1)"/></g><g class="sp-l" style="--i:2"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l2)"/></g><g class="sp-l" style="--i:3"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l3)"/></g><g class="sp-l" style="--i:4"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l4)"/></g><g class="sp-l" style="--i:5"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l5)"/></g><g class="sp-l" style="--i:6"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l6)"/></g><g class="sp-l" style="--i:7"><image href="assets/img/sp-word.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none" clip-path="url(#sp-l7)"/></g>
+      <image class="sp-slogan" href="assets/img/sp-slogan.png?v=5" x="130" y="70" width="1500" height="760" preserveAspectRatio="none"/>
+    </svg>
     <div class="splash__load"><div class="splash__bar"><i></i></div><span>Cargando…</span></div>
   </div>
   <div class="splash__credit" aria-hidden="true"><small>Desarrollado por</small><span class="splash__fluva"><img src="assets/img/fluva-icon.png?v=4" alt="" width="177" height="240"><span>fluva<i>.</i></span></span></div>
@@ -107,11 +115,11 @@ function live(){return soundOn&&ctx&&ctx.state==='running'}
 function tone(f,t,dur,type,vol,f2){var c=ctx,o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,c.currentTime+t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,c.currentTime+t+dur);g.gain.setValueAtTime(0,c.currentTime+t);g.gain.linearRampToValueAtTime(vol,c.currentTime+t+.01);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+t+dur);o.connect(g);g.connect(master);o.start(c.currentTime+t);o.stop(c.currentTime+t+dur+.05)}
 function noise(t,dur,freq,vol){var c=ctx,n=Math.floor(c.sampleRate*dur),b=c.createBuffer(1,n,c.sampleRate),x=b.getChannelData(0);for(var i=0;i<n;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/n,2);var src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=b;f.type='bandpass';f.frequency.value=freq;f.Q.value=1.2;g.gain.value=vol;src.connect(f);f.connect(g);g.connect(master);src.start(c.currentTime+t)}
 var cues=[
- [150,function(){for(var i=0;i<5;i++)tone(520+i*90,i*.13,.09,'triangle',.12)}],
- [180,function(){tone(55,0,1.5,'sawtooth',.035,110)}],
- [1750,function(){noise(0,.06,1800,.5);tone(140,0,.08,'square',.12,70)}],
- [2150,function(){noise(0,.22,4200,.35);tone(1400,0,.18,'sawtooth',.05,300)}],
- [2100,function(){tone(880,0,.9,'sine',.12);tone(1318.5,.06,.9,'sine',.08)}],
+ [120,function(){noise(0,.55,900,.22);tone(220,0,.5,'sine',.05,440)}],
+ [500,function(){tone(55,0,1.2,'sawtooth',.035,110)}],
+ [1600,function(){noise(0,.06,1800,.5);tone(140,0,.08,'square',.12,70);noise(.05,.22,4200,.3);tone(1400,.05,.18,'sawtooth',.04,300)}],
+ [1760,function(){for(var i=0;i<8;i++)tone(520+i*70,i*.07,.08,'triangle',.1)}],
+ [2350,function(){tone(880,0,.9,'sine',.12);tone(1318.5,.06,.9,'sine',.08)}],
  [2600,function(){tone(90,0,2.2,'sawtooth',.03,440)}],
  [4800,function(){tone(660,0,.5,'sine',.1,990);tone(990,.08,.6,'sine',.07)}]
 ];
@@ -138,10 +146,7 @@ addEventListener('keydown',function(e){if(e.key==='Escape')end()});
 <header class="nav" id="top">
   <div class="wrap nav__in">
     <a class="nav__logo" href="#top" aria-label="INGEVERA, ir al inicio">
-      <picture>
-        <source media="(max-width: 860px)" srcset="assets/img/logo-dark-short.png?v=3" width="799" height="200">
-        <img src="assets/img/logo-dark.png?v=3" alt="INGEVERA, Ingeniería y Soluciones Eléctricas" width="814" height="200">
-      </picture>
+      <img src="assets/img/logo-core.png?v=5" alt="INGEVERA, Ingeniería y Soluciones Eléctricas" width="1000" height="175">
     </a>
     <nav class="nav__links" aria-label="Secciones">
       <a href="#servicios">Servicios</a>
@@ -413,7 +418,7 @@ addEventListener('keydown',function(e){if(e.key==='Escape')end()});
 
 <footer class="foot">
   <div class="wrap foot__grid">
-    <picture><source media="(max-width: 860px)" srcset="assets/img/logo-dark-short.png?v=3" width="799" height="200"><img class="foot__logo" src="assets/img/logo-dark.png?v=3" alt="INGEVERA, Ingeniería y Soluciones Eléctricas" width="814" height="200" loading="lazy"></picture>
+    <img class="foot__logo" src="assets/img/logo-full.png?v=5" alt="INGEVERA, Ingeniería y Soluciones Eléctricas" width="1200" height="605" loading="lazy">
     <ul class="foot__list">
       <li><a href="tel:+56987532943">+56 9 8753 2943</a></li>
       <li><a href="https://wa.me/56987532943" target="_blank" rel="noopener">WhatsApp</a></li>
@@ -446,6 +451,6 @@ addEventListener('keydown',function(e){if(e.key==='Escape')end()});
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
 </svg>
 
-<script src="assets/app.js?v=3" defer></script>
+<script src="assets/app.js?v=5" defer></script>
 </body>
 </html>

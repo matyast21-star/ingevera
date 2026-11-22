@@ -57,7 +57,7 @@ html{scrollbar-color:var(--slate) var(--paper-2)}
 .nav{position:sticky;top:0;z-index:50;background:rgba(11,19,43,.94);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line-dark)}
 .nav__in{display:flex;align-items:center;gap:24px;height:var(--nav-h)}
 .nav__logo{display:flex;align-items:center;min-height:44px}
-.nav__logo img{height:40px;width:auto}
+.nav__logo img{height:44px;width:auto}
 html.menu-open{overflow:hidden}
 .nav__links{display:flex;gap:4px;margin-left:auto}
 .nav__links a{color:var(--on-dark-2);text-decoration:none;font:500 .95rem var(--ff-head);padding:12px 12px;border-radius:8px;transition:color .2s,background-color .2s}
@@ -208,7 +208,7 @@ section{position:relative}
 /* Footer */
 .foot{background:#070D1F;color:var(--on-dark-2);padding-block:56px calc(32px + env(safe-area-inset-bottom))}
 .foot__grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:center}
-.foot__logo{height:56px;width:auto}
+.foot__logo{height:auto;width:min(100%,280px)}
 .foot__list{display:flex;flex-wrap:wrap;gap:8px 28px}
 .foot__list a{color:var(--on-dark);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .foot__list a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -229,7 +229,7 @@ section{position:relative}
 }
 @media (max-width:860px){
   :root{--nav-h:64px}
-  .nav__logo img{height:36px}
+  .nav__logo img{height:38px}
   .nav__cta{display:none}
   .nav__menu{margin-left:auto}
   .hero{min-height:auto;padding-block:36px 64px}
