@@ -110,6 +110,8 @@ html.menu-open{overflow:hidden}
 .js .hero .arcs path:nth-child(2){animation-delay:.12s}
 .js .hero .arcs path:nth-child(3){animation-delay:.24s}
 .js .hero .arcs path:nth-child(4){animation-delay:.36s}
+/* Delay the hero entrance until the splash lifts */
+.js.has-splash [data-enter] .hero__copy>*,.js.has-splash [data-enter] .hero__photo,.js.has-splash .hero .arcs path{animation-play-state:paused}
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes pop{to{opacity:1;transform:none}}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -212,8 +214,10 @@ section{position:relative}
 .foot__list a:hover{text-decoration:underline;text-underline-offset:4px}
 .foot__list li{display:flex;align-items:center;min-height:44px}
 .credit{display:inline-flex;align-items:center;gap:8px}
-.credit img{height:18px;width:auto;opacity:.9}
-.foot__base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line-dark);font-size:.9rem}
+.fluva{font:800 1.05rem/1 var(--ff-head);letter-spacing:-.02em;color:#fff}
+.fluva span{color:#4FE5D5}
+.foot__base{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:32px;padding-top:24px;font-size:.9rem}
+.foot__base::before{content:"";position:absolute;top:0;left:var(--gutter);right:var(--gutter);border-top:1px solid var(--line-dark)}
 
 /* Mobile bar */
 .bar{display:none}
