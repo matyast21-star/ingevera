@@ -73,4 +73,34 @@
   if ('serviceWorker' in navigator && location.protocol === 'https:'){
     window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
   }
+
+  /* Works carousel: category chips, arrows and a live counter */
+  var track=document.getElementById('works-track');
+  if(track){
+    var items=[].slice.call(track.children),chips=[].slice.call(document.querySelectorAll('.chip')),
+        arrows=[].slice.call(document.querySelectorAll('.works__arrow')),count=document.getElementById('works-count');
+    var visible=function(){return items.filter(function(li){return !li.hidden})};
+    var update=function(){
+      var v=visible(),max=track.scrollWidth-track.clientWidth,first=0,sl=track.scrollLeft;
+      v.forEach(function(li,i){if(li.offsetLeft-track.offsetLeft-parseFloat(getComputedStyle(track).paddingLeft)<=sl+8)first=i});
+      if(sl>=max-8)first=v.length-1;
+      if(count)count.textContent=(v.length?first+1:0)+' de '+v.length+' fotos';
+      if(arrows[0])arrows[0].disabled=sl<=4;
+      if(arrows[1])arrows[1].disabled=sl>=max-4;
+    };
+    chips.forEach(function(c){c.addEventListener('click',function(){
+      var cat=c.getAttribute('data-cat');
+      chips.forEach(function(o){o.setAttribute('aria-pressed',String(o===c))});
+      items.forEach(function(li){li.hidden=!(cat==='todo'||li.getAttribute('data-cat')===cat)});
+      track.scrollTo({left:0,behavior:'auto'});update();
+    })});
+    arrows.forEach(function(a){a.addEventListener('click',function(){
+      var step=(items[0].getBoundingClientRect().width+parseFloat(getComputedStyle(track).columnGap||20));
+      var n=Math.max(1,Math.floor(track.clientWidth/step)-1);
+      track.scrollBy({left:+a.getAttribute('data-dir')*step*n,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    })});
+    track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();track.scrollBy({left:(e.key==='ArrowRight'?1:-1)*items[0].offsetWidth,behavior:'smooth'})}});
+    var raf=0;track.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(update)},{passive:true});
+    addEventListener('resize',update);update();
+  }
 })();
