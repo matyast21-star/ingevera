@@ -33,6 +33,10 @@
 .splash__socket{animation-delay:.75s;transform:translateY(-10px)}
 .splash__plug{animation-delay:.95s;transform:translateY(14px)}
 .splash__word{font:800 clamp(1.6rem,7vw,2.4rem)/1 'Montserrat',system-ui,sans-serif;letter-spacing:.02em;color:#F5F1EA;opacity:0;transform:translateY(8px);animation:sp-word .6s cubic-bezier(.16,1,.3,1) 1.05s forwards}
+.splash__tag{margin-top:-6px;font:600 clamp(.8rem,3.4vw,1rem)/1.3 'Montserrat',system-ui,sans-serif;letter-spacing:.06em;color:#B9C4D6;text-align:center;padding-inline:16px;opacity:0;animation:sp-word .6s cubic-bezier(.16,1,.3,1) 1.2s forwards}
+.splash__credit{position:absolute;left:0;right:0;bottom:calc(28px + env(safe-area-inset-bottom));text-align:center;font:500 .875rem/1 'Public Sans',system-ui,sans-serif;color:#8794AB;opacity:0;animation:sp-word .6s cubic-bezier(.16,1,.3,1) 1.3s forwards}
+.splash__credit b{font:800 1rem/1 'Montserrat',system-ui,sans-serif;color:#fff;letter-spacing:-.02em;margin-left:4px}
+.splash__credit i{font-style:normal;color:#4FE5D5}
 @keyframes sp-draw{to{stroke-dashoffset:0}}
 @keyframes sp-plug{to{opacity:1;transform:none}}
 @keyframes sp-word{to{opacity:1;transform:none}}
@@ -53,12 +57,14 @@
     <g class="splash__plug"><rect x="404" y="342" width="40" height="32" rx="6"/><rect x="412" y="372" width="7" height="22" rx="2"/><rect x="429" y="372" width="7" height="22" rx="2"/></g>
   </svg>
   <span class="splash__word">INGEVERA</span>
+  <span class="splash__tag">Ingeniería y Soluciones Eléctricas</span>
+  <span class="splash__credit">Desarrollado por <b>fluva<i>.</i></b></span>
 </div>
 <script>(function(){var d=document.documentElement,s=document.getElementById('splash'),seen=false;try{seen=sessionStorage.getItem('ig-splash')==='1';sessionStorage.setItem('ig-splash','1')}catch(e){}
 if(seen||matchMedia('(prefers-reduced-motion: reduce)').matches){s.remove();return}
 d.classList.add('has-splash','splash-on');var t0=Date.now(),done=false;function end(){if(done)return;done=true;s.classList.add('is-done');d.classList.remove('has-splash');setTimeout(function(){s.remove();d.classList.remove('splash-on')},600)}
-function ready(){setTimeout(end,Math.max(0,2000-(Date.now()-t0)))}
-if(document.readyState==='complete')ready();else addEventListener('load',ready);setTimeout(end,3000);s.addEventListener('click',end);addEventListener('keydown',end,{once:true})})();</script>
+function ready(){setTimeout(end,Math.max(0,2400-(Date.now()-t0)))}
+if(document.readyState==='complete')ready();else addEventListener('load',ready);setTimeout(end,3400);s.addEventListener('click',end);addEventListener('keydown',end,{once:true})})();</script>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 
 <header class="nav" id="top">
