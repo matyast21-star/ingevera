@@ -289,7 +289,7 @@ section{position:relative}
 .more__item p{margin:8px 20px 22px;color:var(--ink-2);font-size:1rem}
 
 /* Works carousel */
-.works{padding-block:var(--sec);overflow:hidden}
+.works{padding-block:var(--sec);overflow:hidden;border-top:1px solid var(--line)}
 .works__top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
 .works__top .head{margin-bottom:28px}
 .works__nav{display:flex;gap:10px;margin-bottom:32px}
